@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Plans</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="plan-management.api.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="outer-border">
+        <div>
+            <template x-for="plan in plans">
+                <div class="large">
+                    <h3 x-text="plans"></h3>
+                    <span x-text="plans.id"></span>
+                    <span x-text="plans.plan_name"></span>
+                    //<button class="btn" @click="addPizza(pizza.id)">Add to cart</button>
+                </div>
+            </template>
+            
+        </div>
+    </div>
+</body>
+
+</html>
