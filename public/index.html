@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Plans</title>
+    <title>Xmobile Price Plans</title>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script src="plan-management.api.js"></script>
@@ -12,20 +12,80 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body x-data="phonePlans">
+    <h1 x-text="title"></h1>
     <div class="outer-border">
         <div>
             <template x-for="plan in plans">
                 <div class="large">
-                    <h3 x-text="plans"></h3>
+                    <h3 x-text="plans.plan_name"></h3>
                     <span x-text="plans.id"></span>
                     <span x-text="plans.plan_name"></span>
-                    //<button class="btn" @click="addPizza(pizza.id)">Add to cart</button>
+
                 </div>
             </template>
-            
+
         </div>
     </div>
+    <div class="outer-border">
+        <h2>Create a new plan</h2>
+        <p>Plan Name, use underscore instead of spaces</p>
+        <input type="text" x-model="planName">
+        <p>SMS Price (in Rands)</p>
+        <input type="text" x-model="smsPrice">
+        <p>Call Price (in Rands)</p>
+        <input type="text" x-model="callPrice">
+        <div>
+            <p>Proposed Name:<p x-text="planName"></p></p>
+            <p>Proposed SMS Price:<p x-text="'R ' + smsPrice"></p></p>
+            <p>Proposed Call Price:<p x-text="'R ' + callPrice"></p></p>
+        </div>
+
+        <button class="btn" @click="createPlan(planName, smsPrice, callPrice)">Create Plan</button>
+    </div>
+
+    <div class="outer-border">
+        <h2>Update a plan</h2>
+        <p>Plan ID, an integer number</p>
+        <input type="text" x-model="planName">
+        <p>SMS Price (in Rands)</p>
+        <input type="text" x-model="smsPrice">
+        <p>Call Price (in Rands)</p>
+        <input type="text" x-model="callPrice">
+        <div>
+            <p>Plan ID:<p x-text="planName"></p></p>
+            <p>Proposed SMS Price:<p x-text="'R ' + smsPrice"></p></p>
+            <p>Proposed Call Price:<p x-text="'R ' + callPrice"></p></p>
+        </div>
+        <button class="btn" @click="updatePlan(planName,smsPrice,callPrice)">Update Plan</button>
+    </div>
+
+    <div class="outer-border">
+        <h2>Delete a plan</h2>
+        <p>Plan ID, an integer number</p>
+        <input type="text" x-model="planID">
+        <button class="btn" @click="deletePlan(planID)">Delete Plan</button>
+    </div>
+
+    <div class="outer-border">
+        <h2>Calculate bill</h2>
+        <p>Type in the calls and smses, separated by a comma (no spaces): </p>
+        </h3>
+        <p>Example: call,sms,call,call</p>
+        <p>Your bill consists of: </p>
+        <div x-text="bill" style="color :black"></div>
+
+        <p>Your total bill is: </p>
+        <div x-text="billResult" style="color :black"> </div>
+
+        <div>
+            <input type="text" x-model="bill">
+            <template x-for="plan in plans">
+                <input type="button" value="Calculate cost" @click="totalBill()">
+            </template>
+
+        </div>
+
 </body>
 
 </html>

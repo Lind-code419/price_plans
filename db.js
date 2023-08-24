@@ -35,6 +35,52 @@ export async function deletePlan(id) {
     await db.run(sql, [id]);
 }
 
+export async function updatePlan(plan_name, sms_price, call_price) {
+        
+    const sql = `update price_plan set call_cost = ?, sms_cost = ? where plan_name = $1`
+    await db.run(sql, [sms_price, call_price, plan_name]);
+}
+
+export async function totalPhonebill(id,itemString) {
+        
+    const sql1 = `SELECT passenger_queue_count FROM taxi_queue`;
+    let passengers = 0;
+    passengers = await db.get(sql1);
+    console.log(passengers);
+    const sql2 = `SELECT taxi_queue_count FROM taxi_queue`;
+    let taxis = 0; 
+    taxis = await db.get(sql2);
+    console.log(taxis);
+
+    if (taxis.taxi_queue_count >=1 && passengers.passenger_queue_count >=12) {
+        const sql3 = `update taxi_queue 
+        SET 
+            taxi_queue_count = taxi_queue_count - 1, 
+            passenger_queue_count = passenger_queue_count - 12`;
+        await db.run(sql3);
+
+    }
+
+    var calls = 0;
+  	var smses = 0;
+   	var item = itemString.split(',');
+  	console.log(item);
+  
+  	for (let i =0; i < item.length; i++) {
+    	console.log(item[i]);
+      	if (item[i].includes('call')) {
+        	calls++;
+        }
+      	else {
+        	smses++
+        }
+    
+    }
+  var callcost = calls * 2.75;
+  var smscost = smses * 0.65;
+  var billtotal = (callcost + smscost);
+  return 'R'+ billtotal.toFixed(2);
+}
 
 console.log('end')
 //ctrl-shift-p  to open database explorer

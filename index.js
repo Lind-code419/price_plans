@@ -2,7 +2,7 @@ import express from 'express';
 import * as sqlite from 'sqlite';
 import sqlite3 from 'sqlite3';
 
-import { getPlans, addPlan, deletePlan } from './db.js'
+import { getPlans, addPlan, deletePlan, updatePlan, totalPhonebill } from './db.js'
 
 
 
@@ -65,7 +65,7 @@ app.post('/api/price_plan/create', async (req, res) => {
 
 app.post('/api/price_plan/update', async (req, res) =>{
     console.log(req.body)
-    const id = req.body.id;
+    //const id = req.body.id;
     const plan_name = req.body.plan_name;
     const sms_price = req.body.sms_price;
     const call_price = req.body.call_price;

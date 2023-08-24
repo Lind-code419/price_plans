@@ -16,9 +16,9 @@ POST http://localhost:4011/api/price_plan/create
 content-type: application/json
 
 {
-    "plan_name" : "sms_kick_100",
-    "sms_price": 0.45,
-    "call_price" : 2.65
+    "plan_name" : "sms_kick_201",
+    "sms_price": 0.55,
+    "call_price" : 2.60
     
 }
 
@@ -41,5 +41,9 @@ content-type: application/json
 {
     "id" : 5
 }
+
+###
+
+GET https://pizza-api.projectcodex.net/api/pizzas
 
 //one line open needed after "application/json"
