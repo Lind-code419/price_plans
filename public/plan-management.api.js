@@ -4,7 +4,7 @@ document.addEventListener("alpine:init", () => {
         return {
 
             title: 'Pizza Cart API',
-            pizzas: [],
+            plans: [],
             username: 'Lind-code419',
             cartId: '',
             cartPizzas: [],
