@@ -18,10 +18,10 @@
         <div>
             <template x-for="plan in plans">
                 <div class="large">
-                    <h3 x-text="plans.plan_name"></h3>
-                    <span x-text="plans.id"></span>
-                    <span x-text="plans.plan_name"></span>
-
+                    <h3 x-text="plan.id + ' ' + plan.plan_name"></h3><!--Note that it is 'plan' and not 'plans'-->
+                    <!--<span x-text="plan.id"></span>-->
+                    <span x-text="'SMS Price: R ' +plan.sms_price"></span>
+                    <span x-text="'Call Price: R ' +plan.call_price"></span>
                 </div>
             </template>
 
@@ -36,9 +36,15 @@
         <p>Call Price (in Rands)</p>
         <input type="text" x-model="callPrice">
         <div>
-            <p>Proposed Name:<p x-text="planName"></p></p>
-            <p>Proposed SMS Price:<p x-text="'R ' + smsPrice"></p></p>
-            <p>Proposed Call Price:<p x-text="'R ' + callPrice"></p></p>
+            <p>Proposed Name:
+            <p x-text="planName"></p>
+            </p>
+            <p>Proposed SMS Price:
+            <p x-text="'R ' + smsPrice"></p>
+            </p>
+            <p>Proposed Call Price:
+            <p x-text="'R ' + callPrice"></p>
+            </p>
         </div>
 
         <button class="btn" @click="createPlan(planName, smsPrice, callPrice)">Create Plan</button>
@@ -46,16 +52,22 @@
 
     <div class="outer-border">
         <h2>Update a plan</h2>
-        <p>Plan ID, an integer number</p>
+        <p>Plan Name, use underscore instead of spaces</p>
         <input type="text" x-model="planName">
         <p>SMS Price (in Rands)</p>
         <input type="text" x-model="smsPrice">
         <p>Call Price (in Rands)</p>
         <input type="text" x-model="callPrice">
         <div>
-            <p>Plan ID:<p x-text="planName"></p></p>
-            <p>Proposed SMS Price:<p x-text="'R ' + smsPrice"></p></p>
-            <p>Proposed Call Price:<p x-text="'R ' + callPrice"></p></p>
+            <p>Plan ID:
+            <p x-text="planName"></p>
+            </p>
+            <p>Proposed SMS Price:
+            <p x-text="'R ' + smsPrice"></p>
+            </p>
+            <p>Proposed Call Price:
+            <p x-text="'R ' + callPrice"></p>
+            </p>
         </div>
         <button class="btn" @click="updatePlan(planName,smsPrice,callPrice)">Update Plan</button>
     </div>
@@ -81,7 +93,8 @@
         <div>
             <input type="text" x-model="bill">
             <template x-for="plan in plans">
-                <input type="button" value="Calculate cost" @click="totalBill()">
+                <!--<input class="btn" type="button" value="Calculate cost + `${plan.name}`" @click="totalBill()">-->
+                <button class="btn" @click="totalBill(bill)" x-text="'Calculate for ' + plan.plan_name"></button>
             </template>
 
         </div>
