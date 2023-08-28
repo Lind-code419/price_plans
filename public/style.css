@@ -37,6 +37,7 @@ th, td {
 .btn {
     padding : 0.5em;
     background-color: greenyellow;
+    margin: 0.5em;
 }
 
 @media (min-width: 960px) {
@@ -52,7 +53,8 @@ th, td {
     border-radius: 0.5em;
     padding: 0.5em;
     max-width: 95%;
-    margin: 1em;
+    margin: 1.5em;
+    background-color: lightslategray;
 
 }
 
@@ -79,12 +81,13 @@ th, td {
 
 .large {
     border : 1px solid;
-    padding: 1em;
+    padding: .5em;
     border-radius: 0.5em;
-    margin: 1em;
+    margin: .5em;
     display: inline-block;
-    width: 28%;
-    background-color: green;
+    width: 30%;
+    background-color: lightgreen;
+    text-align: center;
 }
 
 .h1 {

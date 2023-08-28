@@ -20,8 +20,8 @@
                 <div class="large">
                     <h3 x-text="plan.id + ' ' + plan.plan_name"></h3><!--Note that it is 'plan' and not 'plans'-->
                     <!--<span x-text="plan.id"></span>-->
-                    <span x-text="'SMS Price: R ' +plan.sms_price"></span>
-                    <span x-text="'Call Price: R ' +plan.call_price"></span>
+                    <span x-text="'SMS Price: R ' +plan.sms_price.toFixed(2)"></span>
+                    <span x-text="'Call Price: R ' +plan.call_price.toFixed(2)"></span>
                 </div>
             </template>
 
@@ -29,7 +29,7 @@
     </div>
     <div class="outer-border">
         <h2>Create a new plan</h2>
-        <p>Plan Name, use underscore instead of spaces</p>
+        <p>Plan Name</p>
         <input type="text" x-model="planName">
         <p>SMS Price (in Rands)</p>
         <input type="text" x-model="smsPrice">
@@ -52,7 +52,7 @@
 
     <div class="outer-border">
         <h2>Update a plan</h2>
-        <p>Plan Name, use underscore instead of spaces</p>
+        <p>Plan Name</p>
         <input type="text" x-model="planName">
         <p>SMS Price (in Rands)</p>
         <input type="text" x-model="smsPrice">
@@ -63,10 +63,10 @@
             <p x-text="planName"></p>
             </p>
             <p>Proposed SMS Price:
-            <p x-text="'R ' + smsPrice"></p>
+            <p x-text="'R ' + smsPrice.toFixed(2)"></p>
             </p>
             <p>Proposed Call Price:
-            <p x-text="'R ' + callPrice"></p>
+            <p x-text="'R ' + callPrice.toFixed(2)"></p>
             </p>
         </div>
         <button class="btn" @click="updatePlan(planName,smsPrice,callPrice)">Update Plan</button>
@@ -94,7 +94,7 @@
             <input type="text" x-model="bill">
             <template x-for="plan in plans">
                 <!--<input class="btn" type="button" value="Calculate cost + `${plan.name}`" @click="totalBill()">-->
-                <button class="btn" @click="totalBill(bill)" x-text="'Calculate for ' + plan.plan_name"></button>
+                <button class="btn" @click="totalBill(bill, plan.plan_name)" x-text="'Calculate for ' + plan.plan_name"></button>
             </template>
 
         </div>

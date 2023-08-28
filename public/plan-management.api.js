@@ -6,9 +6,7 @@ document.addEventListener("alpine:init", () => {
             title: 'Xmobile Price Plans',
             plans: [],
             bill: '',
-            cartPizzas: [],
             planID: '',
-            paymentAmount: 0,
             message: '',
             planName: '',
             smsPrice: '',
@@ -38,7 +36,10 @@ document.addEventListener("alpine:init", () => {
                         "call_price": `${callPrice}`
 
                     })
+                    .then(result => {alert(`Plan ${planName} created`);this.init();})
                     //.then(result => { this.showCartData() })
+                    alert(`Plan ${planName} created`);
+                    this.init()
 
             },
 
@@ -53,6 +54,9 @@ document.addEventListener("alpine:init", () => {
                     })
                     //.then(result => { this.showCartData() })
 
+                    .then(result => {alert(`Plan ${planName} updated`);this.init();})
+                    
+
             },
 
             deletePlan(planID) {
@@ -63,7 +67,8 @@ document.addEventListener("alpine:init", () => {
                             "id" : `${planID}`
                         
                     })
-                    //.then(result => { this.showCartData() })
+                    .then(result => {alert(`Plan ${planID} deleted`);this.init();})
+                    
             },
 
             pay(amount) {
